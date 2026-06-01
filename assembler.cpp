@@ -69,6 +69,19 @@ void CPU::run() {
 				pc = pc + 2;
 				break;
 			}
+		case JZ:
+			setZeroFlag(regA);
+			if (zero_flag == true) {
+				pc = ram[pc + 1];
+				break;
+			}
+			else {
+				pc = pc + 2;
+				break;
+			}
+		case JMP:
+			pc = ram[pc + 1];
+			break;
 		case HLT:
 		default:
 			hlt = true;
@@ -158,6 +171,30 @@ void CPU::writeMemory(string str) {
 			ram[memIndx++] = findLabel(labelName);
 		}
 
+	}
+	else if (instruction == "JZ") {
+		ram[memIndx++] = JZ;
+		string labelName;
+		ss >> labelName;
+		if (isdigit(labelName[0])) {
+			ram[memIndx++] = stoi(labelName);
+		}
+		else {
+			ram[memIndx++] = findLabel(labelName);
+		}
+	
+
+	}
+	else if (instruction == "JMP") {
+		ram[memIndx++] = JMP;
+		string labelName;
+		ss >> labelName;
+		if (isdigit(labelName[0])) {
+			ram[memIndx++] = stoi(labelName);
+		}
+		else {
+			ram[memIndx++] = findLabel(labelName);
+		}
 	}
 	
 	else {

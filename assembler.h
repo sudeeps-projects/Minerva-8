@@ -38,5 +38,7 @@ enum oppCode {
 	STA,
 	OUT,
 	JNZ,
+	JZ,
+	JMP,
 	HLT
 };
