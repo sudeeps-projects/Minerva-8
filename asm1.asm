@@ -1,7 +1,8 @@
 LDA 5
 
 STA 100
-loop
+
+LABEL loop
 
 LDM 100
 OUT

@@ -197,11 +197,16 @@ void CPU::writeMemory(string str) {
 		}
 	}
 	
-	else {
-		ss >> instruction;
-		labels[labelCount].name = instruction;
+	else if (instruction == "LABEL") {
+		string lName;
+		ss >> lName;
+		labels[labelCount].name = lName;
 		labels[labelCount].address = memIndx;
 		labelCount++;
+	}
+	else {
+		cout << "Invalid Instruction!";
+		exit(1);
 	}
 	
 
