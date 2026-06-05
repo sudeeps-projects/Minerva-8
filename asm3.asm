@@ -1,0 +1,17 @@
+JMP start
+
+LDA 65
+OUT
+
+LABEL start
+
+LDA 72
+OUT
+
+LDA 73
+OUT
+
+LDA 10
+OUT
+
+HLT

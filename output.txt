@@ -1,0 +1,37 @@
+Welcome to MINERVA-8 (MINIMUM RISC-V ALTERNATE ASSEMBLY LANGUAGE)
+PC; 0 regA; 0 regB; 0 CF; 0 ZF; 0ram @ pc204Memory Index0
+
+ASSEMBLY FILE READ FROM USER
+---------------------------
+
+0000 JMP start
+0001 LDA 65
+0003 OUT
+0004 LABEL start
+0004 LDA 72
+0006 OUT
+0007 LDA 73
+0009 OUT
+0010 LDA 10
+0012 OUT
+0013 HLT
+
+Data in memory
+------------------
+Address          Value
+0000             9
+0001             4
+0002             65
+0003             6
+0004             0
+0005             72
+0006             6
+0007             0
+0008             73
+0009             6
+0010             0
+0011             10
+0012             6
+0013             10
+HI
+PC; 13 regA; 10 regB; 0 CF; 0 ZF; 0ram @ pc10Memory Index14

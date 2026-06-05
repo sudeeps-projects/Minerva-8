@@ -1,10 +1,16 @@
 #include "assembler.h"
-#include <iomanip>;
+#include <iomanip>
+
+
 
 // can store up to 50 labels
+Label unresolvedLabels[50];
 Label labels[50];
 int labelCount = 0;
+int unresolvedCount = 0;
 int findLabel(string labelName);
+
+
 
 
 void CPU::init() {
@@ -59,14 +65,10 @@ void CPU::run() {
 			break;
 		case OUT:
 	
-			if (regA > 14) { 
-				cout  << static_cast<int>(regA);
-
-			}
-			else {
 			
-				cout  << regA;
-			}
+			
+			cout  << regA;
+			
 			pc++;
 			break;
 		case JNZ:
@@ -172,50 +174,104 @@ void CPU::writeMemory(string str) {
 		ram[memIndx++] = JNZ;
 		string labelName;
 
-		ss >> labelName;
+		if (ss >> labelName)
+		{
 
-		if (isdigit(labelName[0])) {
-			ram[memIndx++] = stoi(labelName);
+			if (isdigit(labelName[0])) {
+				ram[memIndx++] = stoi(labelName);;
+			}
+			else {
+				if (findLabel(labelName) == -1) {
+					unresolvedLabels[unresolvedCount].name = labelName;
+					unresolvedLabels[unresolvedCount].address = memIndx;
+					unresolvedCount++;
+				}
+				else {
+					ram[memIndx++] = findLabel(labelName);
+
+				}
+			}
 		}
-		else {
-			ram[memIndx++] = findLabel(labelName);
+		else
+		{
+			cout <<instruction << " " << "no label given";
+			exit(1);
 		}
 
 	}
 	else if (instruction == "JZ") {
 		ram[memIndx++] = JZ;
 		string labelName;
-		ss >> labelName;
-		if (isdigit(labelName[0])) {
-			ram[memIndx++] = stoi(labelName);
+		if (ss >> labelName)
+		{
+			if (isdigit(labelName[0])) {
+				ram[memIndx++] = stoi(labelName);
+			}
+			else {
+				if (findLabel(labelName) == -1) {
+					unresolvedLabels[unresolvedCount].name = labelName;
+					unresolvedLabels[unresolvedCount].address = memIndx;
+					unresolvedCount++;
+				}
+				else {
+					ram[memIndx++] = findLabel(labelName);
+
+				}
+			}
 		}
-		else {
-			ram[memIndx++] = findLabel(labelName);
+		else
+		{
+			cout << instruction << " " << "no label given";
+			exit(1);
 		}
-	
 
 	}
 	else if (instruction == "JMP") {
 		ram[memIndx++] = JMP;
 		string labelName;
-		ss >> labelName;
-		if (isdigit(labelName[0])) {
-			ram[memIndx++] = stoi(labelName);
+		if (ss >> labelName)
+		{
+			if (isdigit(labelName[0])) {
+				ram[memIndx++] = stoi(labelName);
+			}
+			else {
+				if (findLabel(labelName) == -1) {
+					unresolvedLabels[unresolvedCount].name = labelName;
+					unresolvedLabels[unresolvedCount].address = memIndx;
+					unresolvedCount++;
+				}
+				else {
+					ram[memIndx++] = findLabel(labelName);
+
+				}
+
+			}
 		}
-		else {
-			ram[memIndx++] = findLabel(labelName);
+		else
+		{
+			cout << instruction << " " << "no label given";
+			exit(1);
 		}
 	}
 	
 	else if (instruction == "LABEL") {
 		string lName;
 		ss >> lName;
-		labels[labelCount].name = lName;
+		labels[labelCount].name = (lName);
 		labels[labelCount].address = memIndx;
+		
+		for (int i = 0; i < unresolvedCount; i++) {
+			if (unresolvedLabels[i].name == labels[labelCount].name) {
+				ram[unresolvedLabels[i].address] = labels[labelCount].address;
+				unresolvedCount--;
+			}
+		}
+
 		labelCount++;
+
 	}
 	else {
-		cout << "Invalid Instruction!";
+		cout << instruction << "Invalid Instruction!";
 		exit(1);
 	}
 	
@@ -229,11 +285,14 @@ int findLabel(string labelName) {
 		if (labels[i].name == labelName) {
 			return labels[i].address;
 		}
-		else {
-			return -1;
-		}
-	}
+		// The redundant else/continue was removed here
+	} // <-- Loop ends here
+
+	return -1; // <-- This must be outside the loop
 }
+
+	
+
 
 void CPU::setZeroFlag(uint8_t reg) {
 	if (reg == 0) {

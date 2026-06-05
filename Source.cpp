@@ -24,7 +24,7 @@ int main() {
 	cpu.init();
 	cpu.print_CPU_state();
 	
-	ifstream file("sum.asm");
+	ifstream file("asm3.asm");
 	string line;
 	cout << "ASSEMBLY FILE READ FROM USER \n";
 	cout << "--------------------------- \n \n";

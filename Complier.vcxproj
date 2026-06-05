@@ -133,6 +133,14 @@
   <ItemGroup>
     <ClInclude Include="assembler.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="asm1.asm" />
+    <None Include="asm2.asm" />
+    <None Include="asm3.asm" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="output.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -27,8 +27,8 @@ public:
 };
 
 struct Label {
-	int address;
-	string name;
+	int address = -1;
+	string name = "";
 };
 
 enum oppCode {
