@@ -27,4 +27,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="asm1.asm">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="asm2.asm">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="asm3.asm">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="output.txt" />
+  </ItemGroup>
 </Project>

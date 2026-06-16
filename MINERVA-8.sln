@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35527.113 d17.12
+VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Complier", "Complier.vcxproj", "{E0D1B62E-7119-42B3-8298-26C861A7DAAB}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MINERVA-8", "Minerva-8.vcxproj", "{E0D1B62E-7119-42B3-8298-26C861A7DAAB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
