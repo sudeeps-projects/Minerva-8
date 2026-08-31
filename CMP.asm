@@ -1,0 +1,32 @@
+; CMP example
+
+LDA 204
+
+LDB 170
+
+CMP
+
+JZ equal
+
+LABEL fail 
+LDA 70
+OUTC 
+LDA 65
+OUTC
+LDA 73
+OUTC
+LDA 76
+OUTC
+HLT
+
+LABEL equal
+LDA 80
+OUTC
+LDA 65
+OUTC
+LDA 83
+OUTC
+LDA 83
+OUTC
+HLT
+

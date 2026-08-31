@@ -24,7 +24,7 @@ int main() {
 	cpu.init();
 	cpu.print_CPU_state();
 	
-	ifstream file("asm3.asm");
+	ifstream file("CMP.asm");
 	string line;
 	cout << "ASSEMBLY FILE READ FROM USER \n";
 	cout << "--------------------------- \n \n";

@@ -64,11 +64,11 @@ void CPU::run() {
 			pc++;
 			break;
 		case OUT:
-	
-			
-			
-			cout  << regA;
-			
+			cout << "OUT: " << static_cast<int>(regA) << endl;
+			pc++;
+			break;
+		case OUTC:
+			cout << static_cast<char>(regA);
 			pc++;
 			break;
 		case JNZ:
@@ -82,7 +82,7 @@ void CPU::run() {
 				break;
 			}
 		case JZ:
-			setZeroFlag(regA);
+			
 			if (zero_flag == true) {
 				pc = ram[pc + 1];
 				break;
@@ -94,6 +94,83 @@ void CPU::run() {
 		case JMP:
 			pc = ram[pc + 1];
 			break;
+		case AND:
+			regA = regA & regB;
+			setZeroFlag(regA); //if regA =0 then zero flag is set
+			pc++;
+			break;
+
+		case OR:
+			regA = regA | regB;
+			setZeroFlag(regA); //if regA =0 then zero flag is set
+			pc = pc + 1;
+			break;
+		case XOR:
+			regA = regA ^ regB;
+			setZeroFlag(regA); //if regA =0 then zero flag is set
+			pc++;
+			break;
+		case SHL:
+		{
+		    //if orig value MSB is 1, then carry flag is set becuase it gets dropped
+			uint16_t temp = static_cast<uint16_t>(regA) << 1;
+			if (temp > 255)
+			{
+				carry_flag = true;
+			}
+			regA = static_cast<uint8_t>(temp);
+			setZeroFlag(regA);
+			pc++;
+			break;
+		}
+
+		case SHR:
+		{
+			//if orig value  LSB is 1, then carry_flag is set as it gets dropped
+			if ((regA & 0x01) == 0x01)
+			{
+				carry_flag = true;
+			}
+			regA = regA >> 1;
+			setZeroFlag(regA);
+			pc++;
+			break;
+		}
+		case NOT:
+		{
+			
+			regA = static_cast<uint8_t>(~regA);
+			setZeroFlag(regA);
+			pc++;
+			break;
+		}
+		case INC:
+		{
+
+			uint16_t temp = static_cast<uint16_t>(regA) + 1;
+			if (temp > 255)
+			{
+				carry_flag = true;
+			}
+			regA = static_cast<uint8_t>(temp);
+			setZeroFlag(regA);
+			pc++;
+			break;
+		}
+		case DEC:
+		{
+
+			regA = regA - 1;
+			setZeroFlag(regA);
+			pc++;
+			break;
+		}
+		case CMP:
+		{
+			setZeroFlag(regA -regB);
+			pc++;
+			break;
+		}
 		case HLT:
 		default:
 			hlt = true;
@@ -107,7 +184,7 @@ void CPU::run() {
 void CPU::print_CPU_state() {
 	
 
-	cout << "PC; " << static_cast<int>(pc)
+	cout << endl << "PC; " << static_cast<int>(pc)
 	 << " regA; " << static_cast<int>(regA)
 
 	 << " regB; " << static_cast<int>(regB)
@@ -164,12 +241,44 @@ void CPU::writeMemory(string str) {
 		ram[memIndx++] = static_cast<uint8_t>(value);
 
 	}
+	else if (instruction == "AND") {
+		ram[memIndx++] = AND;
+	}
+
+	else if (instruction == "OR") {
+		ram[memIndx++] = OR;
+	}
+	else if (instruction == "XOR") {
+		ram[memIndx++] = XOR;
+	}
 	else if (instruction == "HLT") {
 		ram[memIndx++] = HLT;
 	}
+	else if (instruction == "SHL") {
+		ram[memIndx++] = SHL;
+	}
+	else if (instruction == "SHR") {
+		ram[memIndx++] = SHR;
+	}
+	else if (instruction == "NOT") {
+		ram[memIndx++] = NOT;
+	}
+	else if (instruction == "INC") {
+		ram[memIndx++] = INC;
+	}
+	else if (instruction == "DEC") {
+		ram[memIndx++] = DEC;
+	}
 	else if (instruction == "OUT") {
 		ram[memIndx++] = OUT;
-	} 
+	}
+	else if (instruction == "OUTC") {
+		ram[memIndx++] = OUTC;
+	}
+	else if (instruction == "CMP") {
+		ram[memIndx++] = CMP;
+	}
+
 	else if (instruction == "JNZ") {
 		ram[memIndx++] = JNZ;
 		string labelName;
@@ -185,6 +294,7 @@ void CPU::writeMemory(string str) {
 					unresolvedLabels[unresolvedCount].name = labelName;
 					unresolvedLabels[unresolvedCount].address = memIndx;
 					unresolvedCount++;
+					memIndx++;
 				}
 				else {
 					ram[memIndx++] = findLabel(labelName);
@@ -211,6 +321,7 @@ void CPU::writeMemory(string str) {
 				if (findLabel(labelName) == -1) {
 					unresolvedLabels[unresolvedCount].name = labelName;
 					unresolvedLabels[unresolvedCount].address = memIndx;
+					memIndx++;
 					unresolvedCount++;
 				}
 				else {
@@ -306,6 +417,7 @@ void CPU::setZeroFlag(uint8_t reg) {
 uint8_t CPU::getMemIndx() {
 	return memIndx;
 }
+
 
 
 void CPU::printRam() {

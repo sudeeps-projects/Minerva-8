@@ -37,6 +37,34 @@
     <None Include="asm3.asm">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="README.md" />
+    <None Include="sum.asm">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="AND.asm">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="OR.asm">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="XOR.asm">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="SHL.asm">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="SHR.asm">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="INC.asm">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="DEC.asm">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="CMP.asm">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Text Include="output.txt" />

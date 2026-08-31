@@ -1,0 +1,11 @@
+; AND example
+
+LDA 204
+
+LDB 170
+
+AND
+
+OUT 
+
+HLT

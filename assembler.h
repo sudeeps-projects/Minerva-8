@@ -23,6 +23,7 @@ public:
 	void setZeroFlag(uint8_t reg);
 	void printRam();
 	uint8_t getMemIndx();
+	uint8_t bitSimilarity();
 
 };
 
@@ -39,8 +40,18 @@ enum oppCode {
 	SUB,
 	STA,
 	OUT,
+	OUTC,
 	JNZ,
 	JZ,
 	JMP,
+	AND,
+	OR,
+	XOR,
+	SHL,
+	SHR,
+	NOT,
+	INC,
+	DEC,
+	CMP,
 	HLT
 };
