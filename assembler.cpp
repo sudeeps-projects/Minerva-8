@@ -23,9 +23,11 @@ void CPU::init() {
 	hlt = false;
 }
 
-void CPU::run() {
-	while (hlt != true) {
-		switch (ram[pc]) {
+void CPU::run(bool stepMode) {
+	while (hlt != true) 
+	{
+		switch (ram[pc]) 
+		{
 		case LDA:
 			regA = ram[pc + 1];
 			setZeroFlag(regA);
@@ -175,25 +177,36 @@ void CPU::run() {
 		default:
 			hlt = true;
 		}
-	
+
+		if (stepMode && !hlt)
+		{
+
+			print_CPU_state();
+
+			cout << "\nPress ENTER for next instruction...";
+			cin.get();
+		}
+
+		else if (stepMode && hlt)
+		{
+				cout << "\nProgram halted...\n";
+		}
+
 	}
 
 	
 }
 
-void CPU::print_CPU_state() {
-	
-
-	cout << endl << "PC; " << static_cast<int>(pc)
-	 << " regA; " << static_cast<int>(regA)
-
-	 << " regB; " << static_cast<int>(regB)
-	<< " CF; " << carry_flag
-		<< " ZF; " << zero_flag
-		<< "ram @ pc" << static_cast<int>(ram[pc]) 
-		<< "Memory Index" << static_cast<int>(memIndx) << endl << "\n";
-
-
+void CPU::print_CPU_state()
+{
+	cout << "\n-----------------------------\n";
+	cout << "PC: " << static_cast<int>(pc) << '\n';
+	cout << "A : " << static_cast<int>(regA) << '\n';
+	cout << "B : " << static_cast<int>(regB) << '\n';
+	cout << "CF: " << carry_flag << '\n';
+	cout << "ZF: " << zero_flag << '\n';
+	cout << "Next Instruction: " << getOpcodeName(ram[pc]) << '\n';
+	cout << "-----------------------------\n";
 }
 
 uint8_t CPU::readMemory(uint8_t address) {
@@ -427,5 +440,34 @@ void CPU::printRam() {
 		
 		cout << setw(4) << setfill('0') << static_cast<int>(x) << "\t \t " << static_cast<int>(ram[x]) << "\n";
 		x++;
+	}
+}
+
+string CPU::getOpcodeName(uint8_t opcode)
+{
+	switch (opcode)
+	{
+	case LDA:  return "LDA";
+	case LDB:  return "LDB";
+	case LDM:  return "LDM";
+	case STA:  return "STA";
+	case ADD:  return "ADD";
+	case SUB:  return "SUB";
+	case OUT:  return "OUT";
+	case OUTC: return "OUTC";
+	case JNZ:  return "JNZ";
+	case JZ:   return "JZ";
+	case JMP:  return "JMP";
+	case AND:  return "AND";
+	case OR:   return "OR";
+	case XOR:  return "XOR";
+	case SHL:  return "SHL";
+	case SHR:  return "SHR";
+	case NOT:  return "NOT";
+	case INC:  return "INC";
+	case DEC:  return "DEC";
+	case CMP:  return "CMP";
+	case HLT:  return "HLT";
+	default:   return "UNKNOWN";
 	}
 }

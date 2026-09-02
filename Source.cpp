@@ -1,32 +1,45 @@
 #include "assembler.h"
 #include <fstream>
 #include <iomanip>
-/*
-LDA 5
-STA 100
 
-loop:
-
-LDM 100
-OUT
-
-LDB 1
-SUB
-
-STA 100
-
-JNZ loop
-
-HLT*/
-int main() {
+int main(int argc,char* argv[]) {
 	cout << "Welcome to MINERVA-8 (MINIMUM RISC-V ALTERNATE ASSEMBLY LANGUAGE)" << endl;
 	CPU cpu;
+	bool stepMode = false;
+	bool ramMode = false;
+
 	cpu.init();
-	cpu.print_CPU_state();
 	
-	ifstream file("CMP.asm");
+	
+	if (argc < 2) {
+		cout << "Usage: MINERVA-8 <program.asm>\n";
+		return 1;
+	}
+
+	for (int i = 2; i < argc; i++)
+	{
+		string option = argv[i];
+
+		if (option == "--step")
+		{
+			stepMode = true;
+		}
+		else if (option == "--ram")
+		{
+			ramMode = true;
+		}
+		else
+		{
+			cout << "Error: Unknown option '" << option << "'\n";
+			cout << "Usage: MINERVA-8 <program.asm> [--step | --ram]\n";
+			return 1;
+		}
+		
+	}
+	//ifstream file("CMP.asm");
+	ifstream file(argv[1]);
 	string line;
-	cout << "ASSEMBLY FILE READ FROM USER \n";
+	cout << "ASSEMBLY FILE LOADED FROM USER \n";
 	cout << "--------------------------- \n \n";
 	while (getline(file >> ws, line)) {
 		if (line[0] == ';') {
@@ -36,9 +49,15 @@ int main() {
 		cpu.writeMemory(line);
 		
 	}
-	cout << "\nData in memory\n" ;
-	cout << "------------------\n";
-	cpu.printRam();
+
+	cpu.print_CPU_state();
+
+	if (ramMode)
+	{
+		cout << "\nData in memory\n";
+		cout << "------------------\n";
+		cpu.printRam();
+	}
 	/*cpu.writeMemory("LDA 5");
 	cpu.writeMemory("STA 100");
 	cpu.writeMemory("loop");
@@ -48,8 +67,7 @@ int main() {
 	cpu.writeMemory("SUB");
 	cpu.writeMemory("STA 100");
 	cpu.writeMemory("JNZ loop");*/
-	cpu.run();
-	cpu.print_CPU_state();
+	cpu.run(stepMode);
 
 	return 0;
 }

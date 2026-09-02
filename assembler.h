@@ -15,7 +15,7 @@ private:
 	bool hlt;
 public:
 	void init();
-	void run();
+	void run(bool stepMode);
 	void print_CPU_state();
 	uint8_t readMemory(uint8_t address);
 	void writeMemory(uint8_t address, uint8_t value);
@@ -24,7 +24,7 @@ public:
 	void printRam();
 	uint8_t getMemIndx();
 	uint8_t bitSimilarity();
-
+	string getOpcodeName(uint8_t opcode);
 };
 
 struct Label {
