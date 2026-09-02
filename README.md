@@ -185,11 +185,8 @@ Address          Value
 
 
 
-
-```markdown
 ## Project Goal
 
 MINERVA-8 is built to explore how a simple CPU works at a low level, including instruction encoding, registers, RAM, arithmetic and logic operations, flags, jumps, assembly parsing, and the fetch-decode-execute cycle.
 
 MINERVA-8 implements its own instruction set, assembler, execution logic, memory model, and debugging output in C++.
-```
