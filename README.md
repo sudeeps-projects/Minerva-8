@@ -1,6 +1,6 @@
 # MINERVA-8
 
-MINERVA-8 is a console-based 8-bit CPU simulator written in C++ that demonstrates how a processor executes instructions through the fetch-decode-execute cycle while showing changes to registers, memory, flags, and control flow.
+MINERVA-8((MINIMUM RISC-V ALTERNATE ASSEMBLY LANGUAGE) is a console-based 8-bit CPU simulator written in C++ that demonstrates how a processor executes instructions through the fetch-decode-execute cycle while showing changes to registers, memory, flags, and control flow.
 
 The project includes a custom assembler that translates MINERVA-8 assembly language into machine code and loads the resulting instructions and data into 256 bytes of simulated RAM.
 
