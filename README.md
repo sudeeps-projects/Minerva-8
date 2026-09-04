@@ -67,6 +67,8 @@ The execution unit performs the requested operation. Depending on the instructio
 | `INC` | Increment Register A |
 | `DEC` | Decrement Register A |
 | `CMP` | Compare Register A and Register B and update flags |
+| `PUSH`| Push Register A contents to stack |
+| `POP` | Pop stack into Reg A and update flags|
 | `HLT` | Halt execution |
 
 ## Assembler Directives

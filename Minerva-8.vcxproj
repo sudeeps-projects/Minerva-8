@@ -139,13 +139,16 @@
     <None Include="asm1.asm" />
     <None Include="asm2.asm" />
     <None Include="asm3.asm" />
+    <None Include="CALL.asm" />
     <None Include="CMP.asm" />
     <None Include="DEC.asm" />
     <None Include="INC.asm" />
+    <None Include="nested_CALL.asm" />
     <None Include="OR.asm" />
     <None Include="README.md" />
     <None Include="SHL.asm" />
     <None Include="SHR.asm" />
+    <None Include="stack_call.asm" />
     <None Include="sum.asm" />
     <None Include="XOR.asm" />
   </ItemGroup>

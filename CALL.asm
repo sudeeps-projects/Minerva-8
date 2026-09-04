@@ -1,0 +1,15 @@
+;CALL example
+
+LDA 5
+CALL test
+
+OUT
+INC
+DEC
+XOR
+
+HLT
+
+LABEL test
+INC
+RET

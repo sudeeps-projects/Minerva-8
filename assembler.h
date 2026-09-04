@@ -6,6 +6,7 @@ using namespace std;
 class CPU {
 private:
 	uint8_t ram[256];
+	uint8_t sp;
 	uint8_t pc;
 	uint8_t memIndx;
 	uint8_t regA;
@@ -53,5 +54,9 @@ enum oppCode {
 	INC,
 	DEC,
 	CMP,
+	POP,
+	PUSH,
+	CALL,
+	RET,
 	HLT
 };

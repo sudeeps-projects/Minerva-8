@@ -65,6 +65,15 @@
     <None Include="CMP.asm">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="CALL.asm">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="nested_CALL.asm">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="stack_call.asm">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Text Include="output.txt" />

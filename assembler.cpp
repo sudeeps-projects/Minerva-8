@@ -17,6 +17,7 @@ void CPU::init() {
 	regA = 0;
 	regB = 0;
 	pc = 0;
+	sp = 255;
 	memIndx = 0;
 	zero_flag = false;
 	carry_flag = false;
@@ -70,9 +71,33 @@ void CPU::run(bool stepMode) {
 			pc++;
 			break;
 		case OUTC:
-			cout << static_cast<char>(regA);
+			cout << "OUTC: " << static_cast<char>(regA);
 			pc++;
 			break;
+		case POP:
+			regA = ram[++sp];
+			setZeroFlag(regA);
+			pc++;
+			break;
+		case PUSH:
+			ram[sp] = regA;
+			sp--;
+			pc++;
+			break;
+		case CALL:
+		{
+			uint8_t ret = pc + 2;
+			ram[sp] = ret;
+			sp--;
+			pc = ram[pc+1];
+			break;
+		}
+		case RET:
+		{
+			uint8_t ret = ram[++sp];
+			pc = ret;
+			break;
+		}
 		case JNZ:
 			setZeroFlag(regA);
 			if (zero_flag != true) {
@@ -201,6 +226,7 @@ void CPU::print_CPU_state()
 {
 	cout << "\n-----------------------------\n";
 	cout << "PC: " << static_cast<int>(pc) << '\n';
+	cout << "SP: " << static_cast<int>(sp) << '\n';
 	cout << "A : " << static_cast<int>(regA) << '\n';
 	cout << "B : " << static_cast<int>(regB) << '\n';
 	cout << "CF: " << carry_flag << '\n';
@@ -254,6 +280,12 @@ void CPU::writeMemory(string str) {
 		ram[memIndx++] = static_cast<uint8_t>(value);
 
 	}
+	else if (instruction == "PUSH") {
+		ram[memIndx++] = PUSH;
+	}
+	else if (instruction == "POP") {
+		ram[memIndx++] = POP;
+	}
 	else if (instruction == "AND") {
 		ram[memIndx++] = AND;
 	}
@@ -282,6 +314,7 @@ void CPU::writeMemory(string str) {
 	else if (instruction == "DEC") {
 		ram[memIndx++] = DEC;
 	}
+
 	else if (instruction == "OUT") {
 		ram[memIndx++] = OUT;
 	}
@@ -291,7 +324,9 @@ void CPU::writeMemory(string str) {
 	else if (instruction == "CMP") {
 		ram[memIndx++] = CMP;
 	}
-
+	else if (instruction == "RET") {
+		ram[memIndx++] = RET;
+	}
 	else if (instruction == "JNZ") {
 		ram[memIndx++] = JNZ;
 		string labelName;
@@ -350,6 +385,35 @@ void CPU::writeMemory(string str) {
 		}
 
 	}
+
+	else if (instruction == "CALL") {
+		ram[memIndx++] = CALL;
+		string labelName;
+		if (ss >> labelName)
+		{
+			if (isdigit(labelName[0])) {
+				ram[memIndx++] = stoi(labelName);
+			}
+			else {
+				if (findLabel(labelName) == -1) {
+					unresolvedLabels[unresolvedCount].name = labelName;
+					unresolvedLabels[unresolvedCount].address = memIndx;
+					memIndx++;
+					unresolvedCount++;
+				}
+				else {
+					ram[memIndx++] = findLabel(labelName);
+
+				}
+			}
+		}
+		else
+		{
+			cout << instruction << " " << "no label given";
+			exit(1);
+		}
+
+	}
 	else if (instruction == "JMP") {
 		ram[memIndx++] = JMP;
 		string labelName;
@@ -377,6 +441,7 @@ void CPU::writeMemory(string str) {
 			exit(1);
 		}
 	}
+
 	
 	else if (instruction == "LABEL") {
 		string lName;
@@ -467,6 +532,10 @@ string CPU::getOpcodeName(uint8_t opcode)
 	case INC:  return "INC";
 	case DEC:  return "DEC";
 	case CMP:  return "CMP";
+	case PUSH: return "PUSH";
+	case POP: return  "POP";
+	case CALL: return "CALL";
+	case RET: return "RET";
 	case HLT:  return "HLT";
 	default:   return "UNKNOWN";
 	}
