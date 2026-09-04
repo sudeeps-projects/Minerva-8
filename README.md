@@ -69,6 +69,8 @@ The execution unit performs the requested operation. Depending on the instructio
 | `CMP` | Compare Register A and Register B and update flags |
 | `PUSH`| Push Register A contents to stack |
 | `POP` | Pop stack into Reg A and update flags|
+| `CALL`| Call subroutine |
+| `POP` | return from subroutine to the caller|
 | `HLT` | Halt execution |
 
 ## Assembler Directives
