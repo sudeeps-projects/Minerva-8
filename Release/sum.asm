@@ -1,0 +1,26 @@
+; sum of 5 numbers
+
+LDA 0
+
+LDB 1
+ADD
+
+LDB 2
+ADD
+
+LDB 3
+ADD
+
+LDB 4
+
+ADD
+
+LDB 5
+
+ADD
+
+OUT
+
+LDA 10
+
+OUT

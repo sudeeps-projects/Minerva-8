@@ -1,0 +1,17 @@
+;stack + CALL example
+
+LDA 10
+PUSH
+
+LDA 3
+CALL addOne
+LDB 4
+
+POP
+ADD
+OUT
+HLT
+
+LABEL addOne
+INC
+RET
