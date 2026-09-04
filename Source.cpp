@@ -11,6 +11,7 @@ int main(int argc,char* argv[]) {
 	cpu.init();
 	
 	
+	
 	if (argc < 2) {
 		cout << "Usage: MINERVA-8 <program.asm>\n";
 		return 1;
@@ -49,7 +50,6 @@ int main(int argc,char* argv[]) {
 		cpu.writeMemory(line);
 		
 	}
-
 	cpu.print_CPU_state();
 
 	if (ramMode)

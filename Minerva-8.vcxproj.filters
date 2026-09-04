@@ -74,6 +74,15 @@
     <None Include="stack_call.asm">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="bad_call_push.asm">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="bad_pop.asm">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="bad_ret.asm">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Text Include="output.txt" />

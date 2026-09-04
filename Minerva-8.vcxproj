@@ -139,6 +139,9 @@
     <None Include="asm1.asm" />
     <None Include="asm2.asm" />
     <None Include="asm3.asm" />
+    <None Include="bad_call_push.asm" />
+    <None Include="bad_pop.asm" />
+    <None Include="bad_ret.asm" />
     <None Include="CALL.asm" />
     <None Include="CMP.asm" />
     <None Include="DEC.asm" />

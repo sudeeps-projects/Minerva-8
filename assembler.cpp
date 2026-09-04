@@ -9,7 +9,7 @@ Label labels[50];
 int labelCount = 0;
 int unresolvedCount = 0;
 int findLabel(string labelName);
-
+int callDepth = 0;
 
 
 
@@ -75,27 +75,63 @@ void CPU::run(bool stepMode) {
 			pc++;
 			break;
 		case POP:
-			regA = ram[++sp];
-			setZeroFlag(regA);
-			pc++;
+			if (sp == 255)
+			{
+				cout << "error << stack EMPTY (underflow)" << endl;
+				hlt = true;
+			}
+			else
+			{
+				regA = ram[++sp];
+				setZeroFlag(regA);
+				pc++;
+			}
 			break;
 		case PUSH:
-			ram[sp] = regA;
-			sp--;
-			pc++;
+			if (sp < memIndx)
+			{
+				cout << "error << stack FULL (overflow)" << endl;
+				hlt = true;
+			}
+			else 
+			{
+				ram[sp] = regA;
+				sp--;
+				pc++;
+			}
 			break;
 		case CALL:
 		{
-			uint8_t ret = pc + 2;
-			ram[sp] = ret;
-			sp--;
-			pc = ram[pc+1];
+			if (sp < memIndx)
+			{
+				cout << "error << stack FULL (overflow)" << endl;
+				hlt = true;
+			}
+			else 
+			{
+
+
+				uint8_t ret = pc + 2;
+				ram[sp] = ret;
+				sp--;
+				pc = ram[pc + 1];
+				callDepth++;
+			}
 			break;
 		}
 		case RET:
 		{
-			uint8_t ret = ram[++sp];
-			pc = ret;
+			if (callDepth != 0) {
+				uint8_t ret = ram[++sp];
+				pc = ret;
+				callDepth--;
+
+			}
+			else
+			{
+				cout << "error: RET called without prior CALL instruction" << endl;
+				hlt = true;
+			}
 			break;
 		}
 		case JNZ:
