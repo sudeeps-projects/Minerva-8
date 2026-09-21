@@ -3,7 +3,7 @@
 #include <iomanip>
 
 int main(int argc,char* argv[]) {
-	cout << "Welcome to MINERVA-8 (MINIMUM RISC-V ALTERNATE ASSEMBLY LANGUAGE)" << endl;
+	cout << "Welcome to MINERVA-8 (CUSTOM 8-BIT ASSEMBLER)" << endl;
 	CPU cpu;
 	bool stepMode = false;
 	bool ramMode = false;
