@@ -111,8 +111,7 @@ MINERVA-8.exe DEC.asm
 ```bash
 MINERVA-8.exe DEC.asm --step
 ```
-
-The `--step` option pauses after each instruction and displays the current CPU state.
+The `--step` option displays the current CPU state and next instruction, then waits for ENTER before executing it.
 
 ### RAM Mode
 
@@ -154,22 +153,49 @@ Included examples:
 - `SHR.asm`
 - `sum.asm`
 - `XOR.asm`
+- `CALL.asm`
+- `stack_call.asm`
+- `nested_CALL.asm`
+- `bad_ret.asm`
+- `bad_pop.asm`
+- `bad_call_push.asm`
 
 ## Step Mode Output
 
 Example:
 
 ```text
+ASSEMBLY FILE LOADED FROM USER
+---------------------------
+
+0000 LDA 10
+0002 PUSH
+0003 LDA 3
+0005 CALL addOne
+0007 LDB 4
+0009 POP
+0010 ADD
+0011 OUT
+0012 HLT
+0013 LABEL addOne
+0013 INC
+0014 RET
+```
+
+```text
+
 -----------------------------
-PC: 3
-A : 203
+PC: 0
+SP: 255
+A : 0
 B : 0
 CF: 0
 ZF: 0
-Next Instruction: OUT
+Next Instruction: LDA
 -----------------------------
 
-Press ENTER for next instruction...
+Press ENTER to execute...
+
 ```
 
 ## RAM Mode Output
@@ -181,10 +207,21 @@ Data in memory
 ------------------
 Address          Value
 0000             0
-0001             204
-0002             18
-0003             6
-0004             20
+0001             10
+0002             21
+0003             0
+0004             3
+0005             22
+0006             13
+0007             1
+0008             4
+0009             20
+0010             3
+0011             6
+0012             24
+0013             17
+0014             23
+
 ```
 
 
