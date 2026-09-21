@@ -58,12 +58,19 @@ int main(int argc,char* argv[]) {
 		cout << "------------------\n";
 		cpu.printRam();
 	}
-	cpu.print_CPU_state();
-	cout << "\nPress ENTER to execute...";
-	cin.get();
-	//Convert code into machine code and perform arithmetic and logic unit on the assembly
-	cpu.run(stepMode);
-
+	
+	if (stepMode)
+	{
+		cpu.print_CPU_state();
+		cout << "\nPress ENTER to execute...";
+		cin.get();
+		cpu.run(stepMode);
+		//Convert code into machine code and perform arithmetic and logic unit on the assembly
+	}
+	else
+	{
+		cpu.run(false);
+	}
 	return 0;
 }
 
