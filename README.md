@@ -235,6 +235,6 @@ MINERVA-8 implements its own instruction set, assembler, execution logic, memory
 
 ## Why did I do this
 I took a class in C++ in 10th grade. I was not able to follow the lecturer's teachings when he said C++ will be converted to Assembly language
-and then the assembler will convert it to machine code.  He was explaining briefly about fetch/decode/excute cycle and how the ALU comes into play
-I asked my friends in the class and they did not know about it. Then, my dad explained with a block diagram how CPU and RAM play a role.  This curiousity drove me
+and then the assembler will convert it to machine code.  He was explaining briefly about fetch/decode/execute cycle and how the ALU comes into play.
+I asked my friends in the class and they did not know about it. Then, my dad explained with a block diagram how CPU and RAM play a role.  This curiosity drove me
 to read up with RISC-V documentation and I went about building MINERVA-8. 
