@@ -1,5 +1,214 @@
+PS C:\Users\SURESH\source\repos\Compiler\Release> .\MINERVA-8.exe stack_call.asm --ram --step
+Welcome to MINERVA-8 (CUSTOM 8-BIT ASSEMBLER)
+ASSEMBLY FILE LOADED FROM USER
+---------------------------
+
+0000 LDA 10
+0002 PUSH
+0003 LDA 3
+0005 CALL addOne
+0007 LDB 4
+0009 POP
+0010 ADD
+0011 OUT
+0012 HLT
+0013 LABEL addOne
+0013 INC
+0014 RET
+
+Data in memory
+------------------
+Address          Value
+0000             0
+0001             10
+0002             21
+0003             0
+0004             3
+0005             22
+0006             13
+0007             1
+0008             4
+0009             20
+0010             3
+0011             6
+0012             24
+0013             17
+0014             23
+
+-----------------------------
+PC: 0
+SP: 255
+A : 0
+B : 0
+CF: 0
+ZF: 0
+Next Instruction: LDA
+-----------------------------
+
+Press ENTER to execute...
+
+-----------------------------
+PC: 2
+SP: 255
+A : 10
+B : 0
+CF: 0
+ZF: 0
+Next Instruction: PUSH
+-----------------------------
+
+Press ENTER to execute...
+
+-----------------------------
+PC: 3
+SP: 254
+A : 10
+B : 0
+CF: 0
+ZF: 0
+Next Instruction: LDA
+-----------------------------
+
+Press ENTER to execute...
+
+-----------------------------
+PC: 5
+SP: 254
+A : 3
+B : 0
+CF: 0
+ZF: 0
+Next Instruction: CALL
+-----------------------------
+
+Press ENTER to execute...
+
+-----------------------------
+PC: 13
+SP: 253
+A : 3
+B : 0
+CF: 0
+ZF: 0
+Next Instruction: INC
+-----------------------------
+
+Press ENTER to execute...
+
+-----------------------------
+PC: 14
+SP: 253
+A : 4
+B : 0
+CF: 0
+ZF: 0
+Next Instruction: RET
+-----------------------------
+
+Press ENTER to execute...
+
+-----------------------------
+PC: 7
+SP: 254
+A : 4
+B : 0
+CF: 0
+ZF: 0
+Next Instruction: LDB
+-----------------------------
+
+Press ENTER to execute...
+
+-----------------------------
+PC: 9
+SP: 254
+A : 4
+B : 4
+CF: 0
+ZF: 0
+Next Instruction: POP
+-----------------------------
+
+Press ENTER to execute...
+
+-----------------------------
+PC: 10
+SP: 255
+A : 10
+B : 4
+CF: 0
+ZF: 0
+Next Instruction: ADD
+-----------------------------
+
+Press ENTER to execute...
+
+-----------------------------
+PC: 11
+SP: 255
+A : 14
+B : 4
+CF: 0
+ZF: 0
+Next Instruction: OUT
+-----------------------------
+
+Press ENTER to execute...
+OUT: 14
+
+-----------------------------
+PC: 12
+SP: 255
+A : 14
+B : 4
+CF: 0
+ZF: 0
+Next Instruction: HLT
+-----------------------------
+
+Press ENTER to execute...
+
+Program halted...
+PS C:\Users\SURESH\source\repos\Compiler\Release>
+PS C:\Users\SURESH\source\repos\Compiler\Release> .\MINERVA-8.exe stack_call.asm --ram
+Welcome to MINERVA-8 (CUSTOM 8-BIT ASSEMBLER)
+ASSEMBLY FILE LOADED FROM USER
+---------------------------
+
+0000 LDA 10
+0002 PUSH
+0003 LDA 3
+0005 CALL addOne
+0007 LDB 4
+0009 POP
+0010 ADD
+0011 OUT
+0012 HLT
+0013 LABEL addOne
+0013 INC
+0014 RET
+
+Data in memory
+------------------
+Address          Value
+0000             0
+0001             10
+0002             21
+0003             0
+0004             3
+0005             22
+0006             13
+0007             1
+0008             4
+0009             20
+0010             3
+0011             6
+0012             24
+0013             17
+0014             23
+OUT: 14
 PS C:\Users\SURESH\source\repos\Compiler\Release> .\MINERVA-8.exe stack_call.asm --step
-Welcome to MINERVA-8 (MINIMUM RISC-V ALTERNATE ASSEMBLY LANGUAGE)
+Welcome to MINERVA-8 (CUSTOM 8-BIT ASSEMBLER)
 ASSEMBLY FILE LOADED FROM USER
 ---------------------------
 
@@ -151,211 +360,3 @@ Press ENTER to execute...
 
 Program halted...
 PS C:\Users\SURESH\source\repos\Compiler\Release>
-PS C:\Users\SURESH\source\repos\Compiler\Release> .\MINERVA-8.exe stack_call.asm --ram
-Welcome to MINERVA-8 (MINIMUM RISC-V ALTERNATE ASSEMBLY LANGUAGE)
-ASSEMBLY FILE LOADED FROM USER
----------------------------
-
-0000 LDA 10
-0002 PUSH
-0003 LDA 3
-0005 CALL addOne
-0007 LDB 4
-0009 POP
-0010 ADD
-0011 OUT
-0012 HLT
-0013 LABEL addOne
-0013 INC
-0014 RET
-
-Data in memory
-------------------
-Address          Value
-0000             0
-0001             10
-0002             21
-0003             0
-0004             3
-0005             22
-0006             13
-0007             1
-0008             4
-0009             20
-0010             3
-0011             6
-0012             24
-0013             17
-0014             23
-OUT: 14
-PS C:\Users\SURESH\source\repos\Compiler\Release> .\MINERVA-8.exe stack_call.asm --ram --step
-Welcome to MINERVA-8 (MINIMUM RISC-V ALTERNATE ASSEMBLY LANGUAGE)
-ASSEMBLY FILE LOADED FROM USER
----------------------------
-
-0000 LDA 10
-0002 PUSH
-0003 LDA 3
-0005 CALL addOne
-0007 LDB 4
-0009 POP
-0010 ADD
-0011 OUT
-0012 HLT
-0013 LABEL addOne
-0013 INC
-0014 RET
-
-Data in memory
-------------------
-Address          Value
-0000             0
-0001             10
-0002             21
-0003             0
-0004             3
-0005             22
-0006             13
-0007             1
-0008             4
-0009             20
-0010             3
-0011             6
-0012             24
-0013             17
-0014             23
-
------------------------------
-PC: 0
-SP: 255
-A : 0
-B : 0
-CF: 0
-ZF: 0
-Next Instruction: LDA
------------------------------
-
-Press ENTER to execute...
-
------------------------------
-PC: 2
-SP: 255
-A : 10
-B : 0
-CF: 0
-ZF: 0
-Next Instruction: PUSH
------------------------------
-
-Press ENTER to execute...
-
------------------------------
-PC: 3
-SP: 254
-A : 10
-B : 0
-CF: 0
-ZF: 0
-Next Instruction: LDA
------------------------------
-
-Press ENTER to execute...
-
------------------------------
-PC: 5
-SP: 254
-A : 3
-B : 0
-CF: 0
-ZF: 0
-Next Instruction: CALL
------------------------------
-
-Press ENTER to execute...
-
------------------------------
-PC: 13
-SP: 253
-A : 3
-B : 0
-CF: 0
-ZF: 0
-Next Instruction: INC
------------------------------
-
-Press ENTER to execute...
-
------------------------------
-PC: 14
-SP: 253
-A : 4
-B : 0
-CF: 0
-ZF: 0
-Next Instruction: RET
------------------------------
-
-Press ENTER to execute...
-
------------------------------
-PC: 7
-SP: 254
-A : 4
-B : 0
-CF: 0
-ZF: 0
-Next Instruction: LDB
------------------------------
-
-Press ENTER to execute...
-
------------------------------
-PC: 9
-SP: 254
-A : 4
-B : 4
-CF: 0
-ZF: 0
-Next Instruction: POP
------------------------------
-
-Press ENTER to execute...
-
------------------------------
-PC: 10
-SP: 255
-A : 10
-B : 4
-CF: 0
-ZF: 0
-Next Instruction: ADD
------------------------------
-
-Press ENTER to execute...
-
------------------------------
-PC: 11
-SP: 255
-A : 14
-B : 4
-CF: 0
-ZF: 0
-Next Instruction: OUT
------------------------------
-
-Press ENTER to execute...
-OUT: 14
-
------------------------------
-PC: 12
-SP: 255
-A : 14
-B : 4
-CF: 0
-ZF: 0
-Next Instruction: HLT
------------------------------
-
-Press ENTER to execute...
-
-Program halted...
