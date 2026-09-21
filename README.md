@@ -1,6 +1,6 @@
 # MINERVA-8
 
-MINERVA-8((MINIMUM RISC-V ALTERNATE ASSEMBLY LANGUAGE) is a console-based 8-bit CPU simulator written in C++ that demonstrates how a processor executes instructions through the fetch-decode-execute cycle while showing changes to registers, memory, flags, and control flow.
+MINERVA-8((CUSTOM 8-BIT ASSEMBLY LANGUAGE) is a console-based 8-bit CPU simulator written in C++ that demonstrates how a processor executes instructions through the fetch-decode-execute cycle while showing changes to registers, memory, flags, and control flow.
 
 The project includes a custom assembler that translates MINERVA-8 assembly language into machine code and loads the resulting instructions and data into 256 bytes of simulated RAM.
 
@@ -194,3 +194,10 @@ Address          Value
 MINERVA-8 is built to explore how a simple CPU works at a low level, including instruction encoding, registers, RAM, arithmetic and logic operations, flags, jumps, assembly parsing, and the fetch-decode-execute cycle.
 
 MINERVA-8 implements its own instruction set, assembler, execution logic, memory model, and debugging output in C++.
+
+
+## Why did I do this
+I took a class in C++ in 10th grade. I was not able to follow the lecturer's teachings when he said C++ will be converted to Assembly language
+and then the assembler will convert it to machine code.  He was explaining briefly about fetch/decode/excute cycle and how the ALU comes into play
+I asked my friends in the class and they did not know about it. Then, my dad explained with a block diagram how CPU and RAM play a role.  This curiousity drove me
+to read up with RISC-V documentation and I went about building MINERVA-8. 

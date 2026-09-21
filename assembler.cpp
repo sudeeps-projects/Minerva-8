@@ -11,7 +11,10 @@ int unresolvedCount = 0;
 int findLabel(string labelName);
 int callDepth = 0;
 
-
+/*
+*  CPU::init()
+*   initializes the CPU reg/flags/sp/pc
+*/
 
 void CPU::init() {
 	regA = 0;
@@ -23,7 +26,14 @@ void CPU::init() {
 	carry_flag = false;
 	hlt = false;
 }
-
+/*
+* CPU::run(bool stepMode)
+* read the machine code from memory and perform Arithmetic and logical processing
+* set the flags appropriately
+* Added the checks for error instructions
+* 1. calling RET without CALL
+* 2. pop/push from/to empty/full stack
+*/
 void CPU::run(bool stepMode) {
 	while (hlt != true) 
 	{
@@ -53,8 +63,8 @@ void CPU::run(bool stepMode) {
 			if (sum > 255) {
 				carry_flag = true;
 			}
-			setZeroFlag(regA);
 			regA = sum;
+			setZeroFlag(regA);
 			pc++;
 			break;
 		case SUB:
@@ -257,7 +267,10 @@ void CPU::run(bool stepMode) {
 
 	
 }
-
+/*
+* CPU::run(bool stepMode)
+* Prints CPU internal state regs/PC/sp/flags
+*/
 void CPU::print_CPU_state()
 {
 	cout << "\n-----------------------------\n";
@@ -270,16 +283,25 @@ void CPU::print_CPU_state()
 	cout << "Next Instruction: " << getOpcodeName(ram[pc]) << '\n';
 	cout << "-----------------------------\n";
 }
-
+/*
+* CPU::readMemory(uint8_t address)
+* read RAM directly
+*/
 uint8_t CPU::readMemory(uint8_t address) {
 	return ram[address];
 }
-
+/*
+* CPU::writeMemory(uint8_t address, uint8_t value)
+* add the Assembly program into memory
+*/
 void CPU::writeMemory(uint8_t address, uint8_t value) {
 	
 	ram[address] = value;
 }
-
+/*
+* CPU::writeMemory(string str)
+* Assembly program read from file and added to RAM
+*/
 void CPU::writeMemory(string str) {
 	stringstream ss(str);
 	int value;
@@ -504,21 +526,28 @@ void CPU::writeMemory(string str) {
 	
 }
 
-
+/*
+* findLabel(string labelName) 
+* Helper function to findLabel
+* if backward reference , it will find it and provide the address of the next valid instruction
+* if forward reference.. it will be maintained as unresolved and will be fixed lated
+*/
 int findLabel(string labelName) {
 	for (int i = 0; i < labelCount; i++) {
 		if (labels[i].name == labelName) {
 			return labels[i].address;
 		}
-		// The redundant else/continue was removed here
-	} // <-- Loop ends here
-
-	return -1; // <-- This must be outside the loop
+		
+	} 
+	return -1; 
 }
 
 	
 
-
+/*
+* CPU::setZeroFlag(uint8_t reg)
+* set the zero flag if regA is 0
+*/
 void CPU::setZeroFlag(uint8_t reg) {
 	if (reg == 0) {
 		zero_flag = true;
@@ -527,12 +556,18 @@ void CPU::setZeroFlag(uint8_t reg) {
 		zero_flag = false;
 	}
 }
-
+/*
+* CPU::getMemIndx()
+* getter helper function to read RAM mem index
+*/
 uint8_t CPU::getMemIndx() {
 	return memIndx;
 }
 
-
+/*
+*  CPU::printRam()
+* Print Memory contents to console
+*/
 
 void CPU::printRam() {
 	uint8_t x = 0;
@@ -543,6 +578,11 @@ void CPU::printRam() {
 		x++;
 	}
 }
+
+/*
+* CPU::getOpcodeName(uint8_t opcode)
+* helper function to convert instruction ENUM to string
+*/
 
 string CPU::getOpcodeName(uint8_t opcode)
 {

@@ -10,8 +10,7 @@ int main(int argc,char* argv[]) {
 
 	cpu.init();
 	
-	
-	
+	// parse the cmdline
 	if (argc < 2) {
 		cout << "Usage: MINERVA-8 <program.asm>\n";
 		return 1;
@@ -37,7 +36,7 @@ int main(int argc,char* argv[]) {
 		}
 		
 	}
-	//ifstream file("CMP.asm");
+	//read in the user file
 	ifstream file(argv[1]);
 	string line;
 	cout << "ASSEMBLY FILE LOADED FROM USER \n";
@@ -50,7 +49,8 @@ int main(int argc,char* argv[]) {
 		cpu.writeMemory(line);
 		
 	}
-	cpu.print_CPU_state();
+	//print the CPU regs
+	//
 
 	if (ramMode)
 	{
@@ -58,16 +58,12 @@ int main(int argc,char* argv[]) {
 		cout << "------------------\n";
 		cpu.printRam();
 	}
-	/*cpu.writeMemory("LDA 5");
-	cpu.writeMemory("STA 100");
-	cpu.writeMemory("loop");
-	cpu.writeMemory("LDM 100");
-	cpu.writeMemory("OUT");
-	cpu.writeMemory("LDB 1");
-	cpu.writeMemory("SUB");
-	cpu.writeMemory("STA 100");
-	cpu.writeMemory("JNZ loop");*/
+	cpu.print_CPU_state();
+	cout << "\nPress ENTER for next instruction...";
+	cin.get();
+	//Convert code into machine code and perform arithmetic and logic unit on the assembly
 	cpu.run(stepMode);
 
 	return 0;
 }
+
