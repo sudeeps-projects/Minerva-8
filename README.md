@@ -159,6 +159,7 @@ Included examples:
 - `bad_ret.asm`
 - `bad_pop.asm`
 - `bad_call_push.asm`
+- `fibonacci.asm`
 
 ## Step Mode Output
 

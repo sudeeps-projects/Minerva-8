@@ -145,6 +145,7 @@
     <None Include="CALL.asm" />
     <None Include="CMP.asm" />
     <None Include="DEC.asm" />
+    <None Include="fibonacci.asm" />
     <None Include="INC.asm" />
     <None Include="nested_CALL.asm" />
     <None Include="OR.asm" />
