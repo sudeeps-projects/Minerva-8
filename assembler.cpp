@@ -254,7 +254,7 @@ void CPU::run(bool stepMode) {
 
 			print_CPU_state();
 
-			cout << "\nPress ENTER for next instruction...";
+			cout << "\nPress ENTER to execute...";
 			cin.get();
 		}
 

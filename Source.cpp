@@ -59,7 +59,7 @@ int main(int argc,char* argv[]) {
 		cpu.printRam();
 	}
 	cpu.print_CPU_state();
-	cout << "\nPress ENTER for next instruction...";
+	cout << "\nPress ENTER to execute...";
 	cin.get();
 	//Convert code into machine code and perform arithmetic and logic unit on the assembly
 	cpu.run(stepMode);
