@@ -86,6 +86,9 @@
     <None Include="fibonacci.asm">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="CharLoop.asm">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Text Include="output.txt" />

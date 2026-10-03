@@ -143,6 +143,7 @@
     <None Include="bad_pop.asm" />
     <None Include="bad_ret.asm" />
     <None Include="CALL.asm" />
+    <None Include="CharLoop.asm" />
     <None Include="CMP.asm" />
     <None Include="DEC.asm" />
     <None Include="fibonacci.asm" />
