@@ -145,7 +145,6 @@ void CPU::run(bool stepMode) {
 			break;
 		}
 		case JNZ:
-			setZeroFlag(regA);
 			if (zero_flag != true) {
 				pc = ram[pc + 1];
 				break;

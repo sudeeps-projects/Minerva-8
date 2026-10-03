@@ -1,16 +1,14 @@
-LDA 90         ; Load ASCII 'Z'
-STA 240        ; Save to RAM
-LDB 64         ; Load ASCII '@' into Reg B (Stop marker)
+LDA 90         ; Load ASCII value for 'Z' (90) into Reg A
+STA 240        ; Store current character state in RAM [240]
+LDB 64         ; Load ASCII value for '@' (64) into Reg B (Stop marker, one before 'A')
 
 LABEL loop_start
-LDM 240        ; 1. Load the current character into Reg A
-CMP            ; 2. COMPARE IMMEDIATELY (Reg A vs Reg B)
-JZ end_program ; 3. JUMP OUT IF EQUAL (If we hit 64, stop!)
+LDM 240        ; Load active character into Reg A
+OUTC           ; Output Reg A as an ASCII character (Z, Y, X...)
+DEC            ; Step down to the next ASCII character
+STA 240        ; Save it back to RAM [240]
 
-OUTC           ; 4. Output the character if not equal
-DEC            ; 5. Decrement Reg A
-STA 240        ; 6. Save new value back to RAM
-JMP loop_start ; 7. Jump back to check the next character
+CMP            ; Compare Reg A with Reg B (Stop marker 64)
+JNZ loop_start ; If we haven't hit character 64, loop again
 
-LABEL end_program
-HLT            ; Halt execution cleanly
+HLT            ; Halt execution when done
