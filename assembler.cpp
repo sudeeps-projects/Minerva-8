@@ -81,7 +81,7 @@ void CPU::run(bool stepMode) {
 			pc++;
 			break;
 		case OUTC:
-			cout << "OUTC: " << static_cast<char>(regA);
+			cout << "OUTC: " << static_cast<char>(regA) << endl;
 			pc++;
 			break;
 		case POP:
