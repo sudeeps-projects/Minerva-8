@@ -243,13 +243,13 @@ to read up with RISC-V documentation and I went about building MINERVA-8.
 
 ## Quick Start & Usage
 
-The compiled executable **`minerva-8.exe`** is located inside the **`release`** folder of this repository. 
+The compiled executable **`MINERVA-8.exe`** is located inside the **`release`** folder of this repository. 
 
 ### General Usage
 Open your command prompt, navigate to the `release` folder, and run the executable with your assembly file and optional flags:
 
 ```bash
-minerva-8.exe <filename.asm> [options]
+MINERVA-8.exe <filename.asm> [options]
 ```
 
 ### Parameters & Options
@@ -263,23 +263,23 @@ minerva-8.exe <filename.asm> [options]
 
 **1. Standard Execution**
 ```bash
-minerva-8.exe DEC.asm
+MINERVA-8.exe DEC.asm
 ```
 
 **2. Running Step Mode**
 ```bash
-minerva-8.exe DEC.asm --step
+MINERVA-8.exe DEC.asm --step
 ```
 
 **3. Running RAM Mode**
 ```bash
-minerva-8.exe DEC.asm --ram
+MINERVA-8.exe DEC.asm --ram
 ```
 
 **4. Combining Step and RAM Modes**
 The optional flags can be supplied together in any order:
 ```bash
-minerva-8.exe DEC.asm --step --ram
+MINERVA-8.exe DEC.asm --step --ram
 # OR
-minerva-8.exe DEC.asm --ram --step
+MINERVA-8.exe DEC.asm --ram --step
 ```
