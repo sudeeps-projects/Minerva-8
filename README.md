@@ -239,3 +239,47 @@ I took a class in C++ in 10th grade. I was not able to follow the professor's te
 and then the assembler will convert it to machine code.  He was explaining briefly about fetch/decode/execute cycle and how the ALU comes into play.
 I asked my friends in the class and they did not know about it. Then, my dad explained with a block diagram how CPU and RAM play a role.  This curiosity drove me
 to read up with RISC-V documentation and I went about building MINERVA-8. 
+
+
+## Quick Start & Usage
+
+The compiled executable **`minerva-8.exe`** is located inside the **`release`** folder of this repository. 
+
+### General Usage
+Open your command prompt, navigate to the `release` folder, and run the executable with your assembly file and optional flags:
+
+```bash
+minerva-8.exe <filename.asm> [options]
+```
+
+### Parameters & Options
+* **`filename.asm`** *(Required)*: The path to the MINERVA-8 assembly file you want to execute.
+* **`--step`** *(Optional)*: **Step Mode**. Displays the current CPU state and next instruction, then waits for `ENTER` before executing the next step.
+* **`--ram`** *(Optional)*: **RAM Mode**. Displays the fully assembled machine code stored in the 256-byte RAM.
+
+---
+
+### Command Examples
+
+**1. Standard Execution**
+```bash
+minerva-8.exe DEC.asm
+```
+
+**2. Running Step Mode**
+```bash
+minerva-8.exe DEC.asm --step
+```
+
+**3. Running RAM Mode**
+```bash
+minerva-8.exe DEC.asm --ram
+```
+
+**4. Combining Step and RAM Modes**
+The optional flags can be supplied together in any order:
+```bash
+minerva-8.exe DEC.asm --step --ram
+# OR
+minerva-8.exe DEC.asm --ram --step
+```
